@@ -25,6 +25,18 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+ <style>
+    @keyframes marquee {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee {
+      animation: marquee 40s linear infinite;
+    }
+  </style>
+
+
   <link rel="stylesheet" href="style.css">
 
 </head>
@@ -40,36 +52,40 @@
       </a>
 
       <div class="hidden md:flex items-center gap-8">
-        <a href="../main/index.html" class="nav-link">Home</a>
-        <a href="../courses/courses.html" class="nav-link">Courses</a>
-        <!-- <a href="javascript:void(0)" class="nav-link">Mentors</a> -->
-        <a href="../community/community.html" class="nav-link">Community</a>
-        <a href="../resources/resources.html" class="nav-link relative">
+        <a href="../main/index.html" class="nav-link nav-hide-on-tab">Home</a>
+        <a href="../courses/courses.html" class="nav-link nav-hide-on-tab">Courses</a>
+        <a href="../mentor/mentor.html" class="nav-link nav-hide-on-tab">Mentors</a>
+        <a href="../community/community.html" class="nav-link nav-hide-on-tab">Community</a>
+        <a href="../resources/resources.html" class="nav-link relative nav-hide-on-tab">
           Resources
           <div class="notification-badge" id="notificationBadge">1</div>
         </a>
       </div>
 
       <div class="flex items-center gap-4 nav-button-group">
-        <button class="hidden md:inline-block px-4 py-2 border-2 border-purple-500 text-purple-600 text-sm font-medium rounded-full hover:bg-purple-50 transition-all" id="loginBtn">
+        <button class="hidden md:inline-block px-4 py-2 border-2 border-purple-500 text-purple-600 text-sm font-medium rounded-full hover:bg-purple-50 transition-all nav-login" id="loginBtn">
           Log In
         </button>
-        <button class="px-4 py-2 bg-purple-600 text-white text-sm font-medium rounded-full hover:bg-purple-500 transition-all" id="signupBtn">
+        <button class="px-4 py-2 bg-purple-600 text-white text-sm font-medium rounded-full hover:bg-purple-500 transition-all nav-signup" id="signupBtn">
           Sign Up
         </button>
-        <button id="menuToggle" class="md:hidden text-gray-700 focus:outline-none">
+        <!-- ✅ Shows only in tab view -->
+        <button id="openDashboard" class="inline-block lg:hidden text-gray-700 focus:outline-none nav-dashboard">
           <i class="fas fa-bars text-2xl"></i>
         </button>
-
       </div>
     </div>
    <!-- Right-side Dashboard -->
-    <div id="dashboardPanel" class="fixed top-0 right-0 h-full w-72 bg-white opacity-100 shadow-lg transform translate-x-full transition-transform duration-300 z-50 md:hidden">
+    <div id="dashboardPanel" class="fixed top-0 right-0 h-full w-72 bg-white shadow-lg transform translate-x-full transition-transform duration-300 z-50">
+
       <div class="p-6 bg-white opacity-100">
         <h3 class="text-xl font-bold mb-4 text-gray-800">Dashboard</h3>
-
-        <a href="../main/index.html" class="block py-2 text-gray-800 font-medium nav-link">Home</a>
+        <a href="javascript:void(0)" id="openLoginFromDashboard" class="block py-2 text-gray-800 font-medium nav-link">
+          Login
+        </a>
+        <a href="../main/index.html" class="block py-2 text-gray-800 font-medium nav-link md:hidden lg:block">Home</a>
         <a href="../courses/courses.html" class="block py-2 text-gray-800 font-medium nav-link">Courses</a>
+        <a href="../mentor/mentor.html" class="block py-2 text-gray-800 font-medium nav-link">Mentors</a>
         <a href="../community/community.html" class="block py-2 text-gray-800 font-medium nav-link">Community</a>
         <a href="../resources/resources.html" class="block py-2 text-gray-800 font-medium nav-link relative">
           Resources <div class="notification-badge">1</div>
@@ -156,7 +172,7 @@
             <img src="https://cdn.pixabay.com/photo/2018/01/15/07/51/woman-3083376_960_720.jpg" class="w-12 h-12 rounded-full border-2 border-white" alt="Mentor">
             <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 text-xs border-2 border-white">+2</div>
           </div>
-          <a href="javascript:void(0)" class="text-purple-600 font-medium flex items-center gap-2 hover:text-purple-700">
+          <a href="../mentor/mentor.html" class="text-purple-600 font-medium flex items-center gap-2 hover:text-purple-700">
             <span>Meet the team</span>
             <i class="fas fa-arrow-right text-sm"></i>
           </a>
@@ -203,99 +219,153 @@
   </section>
 
   <!-- Testimonials Section -->
-  <section class="py-20">
+  <section class="py-20 overflow-hidden bg-white">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
         <h2 class="text-3xl md:text-4xl font-bold mb-4 gradient-text">Success Stories</h2>
         <p class="text-lg text-gray-600 max-w-3xl mx-auto">Hear from girls who transformed their passion into skills and confidence.</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="bg-white p-8 rounded-2xl shadow-lg">
-          <div class="flex gap-4 items-center mb-6">
-            <img src="https://cdn.pixabay.com/photo/2018/01/15/07/51/woman-3083383_960_720.jpg" alt="Student" class="w-16 h-16 rounded-full object-cover">
-            <div>
-              <h4 class="font-bold">Maya Johnson</h4>
-              <p class="text-sm text-gray-500">Web Developer, 16</p>
+      <!-- Marquee container -->
+      <div class="relative overflow-hidden ">
+        <div class="flex w-max animate-marquee gap-8">
+          <!-- Card group duplicated for smooth loop -->
+          <div class="flex gap-8">
+            <!-- Card 1 -->
+            <div class="bg-white p-8 rounded-2xl shadow-lg w-80 shrink-0 my-6">
+              <div class="flex gap-4 items-center mb-6">
+                <img src="https://cdn.pixabay.com/photo/2018/01/15/07/51/woman-3083383_960_720.jpg" alt="Student" class="w-16 h-16 rounded-full object-cover">
+                <div>
+                  <h4 class="font-bold">Maya Johnson</h4>
+                  <p class="text-sm text-gray-500">Web Developer, 16</p>
+                </div>
+              </div>
+              <p class="text-gray-600">"TriveHer gave me the confidence to pursue my passion for coding. Now I'm building websites and even won my school's science fair with my app!"</p>
+              <div class="mt-6 flex text-yellow-400">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+              </div>
             </div>
-          </div>
-          <p class="text-gray-600">"TriveHer gave me the confidence to pursue my passion for coding. Now I'm building websites and even won my school's science fair with my app!"</p>
-          <div class="mt-6 flex">
-            <i class="fas fa-star text-yellow-400"></i>
-            <i class="fas fa-star text-yellow-400"></i>
-            <i class="fas fa-star text-yellow-400"></i>
-            <i class="fas fa-star text-yellow-400"></i>
-            <i class="fas fa-star text-yellow-400"></i>
-          </div>
-        </div>
 
-        <div class="bg-white p-8 rounded-2xl shadow-lg">
-          <div class="flex gap-4 items-center mb-6">
-            <img src="https://cdn.pixabay.com/photo/2020/08/21/08/33/student-5505413_960_720.png" alt="Student" class="w-16 h-16 rounded-full object-cover">
-            <div>
-              <h4 class="font-bold">Zoe Garcia</h4>
-              <p class="text-sm text-gray-500">Game Developer, 15</p>
+            <!-- Card 2 -->
+            <div class="bg-white p-8 rounded-2xl shadow-lg w-80 shrink-0 my-6">
+              <div class="flex gap-4 items-center mb-6">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZt6P0ukaRGJ-ttuRMhdEVTz22rzV_kiaCqQ&s" alt="Student" class="w-16 h-16 rounded-full object-cover">
+                <div>
+                  <h4 class="font-bold">Zoe Garcia</h4>
+                  <p class="text-sm text-gray-500">Game Developer, 15</p>
+                </div>
+              </div>
+              <p class="text-gray-600">"I always loved gaming but never thought I could create my own. The mentors at TriveHer helped me build my first game and now I'm working on a mobile app!"</p>
+              <div class="flex items-center gap-2 mt-6">
+                <div class="flex text-yellow-400">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span class="text-sm text-gray-600 py-0.5">4.5</span>
+              </div>
             </div>
-          </div>
-          <p class="text-gray-600">"I always loved gaming but never thought I could create my own. The mentors at TriveHer helped me build my first game and now I'm working on a mobile app!"</p>
-          <div class="mt-6 flex">
-            <i class="fas fa-star text-yellow-400"></i>
-            <i class="fas fa-star text-yellow-400"></i>
-            <i class="fas fa-star text-yellow-400"></i>
-            <i class="fas fa-star text-yellow-400"></i>
-            <i class="fas fa-star text-yellow-400"></i>
-          </div>
-        </div>
 
-        <div class="bg-white p-8 rounded-2xl shadow-lg md:col-span-2 lg:col-span-1">
-          <div class="flex gap-4 items-center mb-6">
-            <img src="https://cdn.pixabay.com/photo/2021/09/24/02/48/girl-6651214_960_720.jpg" alt="Student" class="w-16 h-16 rounded-full object-cover">
-            <div>
-              <h4 class="font-bold">Aisha Patel</h4>
-              <p class="text-sm text-gray-500">AI Enthusiast, 17</p>
+            <!-- Card 3 -->
+            <div class="bg-white p-8 rounded-2xl shadow-lg w-80 shrink-0 my-6">
+              <div class="flex gap-4 items-center mb-6">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0LbxRM2GBVxebY7btc4yZhZNbqskc-MMfkg&s" alt="Student" class="w-16 h-16 rounded-full object-cover">
+                <div>
+                  <h4 class="font-bold">Aisha Patel</h4>
+                  <p class="text-sm text-gray-500">AI Enthusiast, 17</p>
+                </div>
+              </div>
+              <p class="text-gray-600">"The Python course at TriveHer opened my eyes to the world of AI. I'm now working with a team on a machine learning project that helps identify plant diseases!"</p>
+              <div class="flex items-center gap-2 mt-6">
+                <div class="flex text-yellow-400">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span class="text-sm text-gray-600 py-0.5">4.5</span>
+              </div>
             </div>
           </div>
-          <p class="text-gray-600">"The Python course at TriveHer opened my eyes to the world of AI. I'm now working with a team on a machine learning project that helps identify plant diseases!"</p>
-          <div class="mt-6 flex">
-            <i class="fas fa-star text-yellow-400"></i>
-            <i class="fas fa-star text-yellow-400"></i>
-            <i class="fas fa-star text-yellow-400"></i>
-            <i class="fas fa-star text-yellow-400"></i>
-            <i class="fas fa-star text-yellow-400"></i>
+
+          <!-- Duplicate the cards for infinite loop -->
+          <div class="flex gap-8">
+            <!-- Duplicate Card 1 -->
+            <div class="bg-white p-8 rounded-2xl shadow-xl w-80 shrink-0 my-6">
+              <div class="flex gap-4 items-center mb-6">
+                <img src="https://cdn.pixabay.com/photo/2018/01/15/07/51/woman-3083383_960_720.jpg" alt="Student" class="w-16 h-16 rounded-full object-cover">
+                <div>
+                  <h4 class="font-bold">Maya Johnson</h4>
+                  <p class="text-sm text-gray-500">Web Developer, 16</p>
+                </div>
+              </div>
+              <p class="text-gray-600">"TriveHer gave me the confidence to pursue my passion for coding. Now I'm building websites and even won my school's science fair with my app!"</p>
+              <div class="flex items-center gap-2 mt-6">
+                <div class="flex text-yellow-400">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span class="text-sm text-gray-600 py-0.5">4.5</span>
+              </div>
+
+
+            </div>
+
+            <!-- Duplicate Card 2 -->
+            <div class="bg-white p-8 rounded-2xl shadow-lg w-80 shrink-0 my-6">
+              <div class="flex gap-4 items-center mb-6">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0LbxRM2GBVxebY7btc4yZhZNbqskc-MMfkg&s" alt="Student" class="w-16 h-16 rounded-full object-cover">
+                <div>
+                  <h4 class="font-bold">Zoe Garcia</h4>
+                  <p class="text-sm text-gray-500">Game Developer, 15</p>
+                </div>
+              </div>
+              <p class="text-gray-600">"I always loved gaming but never thought I could create my own. The mentors at TriveHer helped me build my first game and now I'm working on a mobile app!"</p>
+              <div class="flex items-center gap-2 mt-6">
+                <div class="flex text-yellow-400">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span class="text-sm text-gray-600 py-0.5">4.5</span>
+              </div>
+            </div>
+
+            <!-- Duplicate Card 3 -->
+            <div class="bg-white p-8 rounded-2xl shadow-lg w-80 shrink-0 my-6">
+              <div class="flex gap-4 items-center mb-6">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0LbxRM2GBVxebY7btc4yZhZNbqskc-MMfkg&s" alt="Student" class="w-16 h-16 rounded-full object-cover">
+                <div>
+                  <h4 class="font-bold">Aisha Patel</h4>
+                  <p class="text-sm text-gray-500">AI Enthusiast, 17</p>
+                </div>
+              </div>
+              <p class="text-gray-600">"The Python course at TriveHer opened my eyes to the world of AI. I'm now working with a team on a machine learning project that helps identify plant diseases!"</p>
+              <div class="flex items-center gap-2 mt-6">
+                <div class="flex text-yellow-400">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span class="text-sm text-gray-600 py-0.5">4.5</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA Section -->
-  <section class="py-20 bg-gradient-to-r from-purple-50 to-pink-50 relative overflow-hidden">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="bg-white rounded-3xl p-10 md:p-16 shadow-xl relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-64 h-64 bg-purple-100 rounded-full -translate-y-1/2 translate-x-1/4"></div>
-        <div class="absolute bottom-0 left-0 w-40 h-40 bg-pink-100 rounded-full translate-y-1/2 -translate-x-1/4"></div>
-
-        <div class="text-center max-w-3xl mx-auto relative">
-          <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 gradient-text">Ready to Start Your Coding Journey?</h2>
-          <p class="text-lg text-gray-600 mb-10">Join TriveHer today and discover the exciting world of coding with a supportive community of girls who share your passion.</p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <button class="btn-primary text-lg flex items-center justify-center gap-2 min-w-[200px]">
-              <span>Start Learning</span>
-              <i class="fas fa-rocket"></i>
-            </button>
-            <!-- <button class="px-8 py-4 bg-white border-2 border-purple-600 text-purple-600 rounded-full hover:bg-purple-50 transition-all font-medium flex items-center justify-center gap-2 min-w-[200px]">
-              <span>Watch Demo</span>
-              <i class="fas fa-play"></i>
-            </button> -->
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Background elements -->
-    <div class="absolute top-1/4 left-10 text-8xl text-purple-300/20 font-bold">&lt;/&gt;</div>
-    <div class="absolute bottom-1/4 right-10 text-9xl text-pink-300/10 font-bold">{}</div>
-  </section>
 
   <!-- Footer -->
   <footer class="bg-gray-50 py-16">

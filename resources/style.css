@@ -4,7 +4,7 @@
 	--background: #ffffff;
 	--text-dark: #2a2a2a;
 	--text-light: #6a6a6a;
-	--primary-vio : #503f9d; 
+	--primary-vio : #503f9d;
 }
 
 * {
@@ -155,7 +155,7 @@ body {
 	font-weight: bold;
 	line-height: 1.3;          /* Fix: increase line-height */
 	margin-bottom: 3rem;
-	overflow: visible;  
+	overflow: visible;
 	margin-top: 2rem;
 }
 
@@ -341,7 +341,7 @@ body {
 		height: 400px;
 		margin-top: 30px;
 	}
-	
+
 	.hero-content {
 		text-align: center;
 	}
@@ -359,22 +359,22 @@ body {
 	.scene-container {
 		height: 350px;
 	  }
-	  
+
 	  .feature-card {
 		padding: 1.5rem;
 	  }
 }
 
+/* Tablet and medium screen styles (768px to 1023px) */
 @media (min-width: 768px) and (max-width: 1023px) {
   .scene-container {
     width: 400px !important;
     height: 400px !important;
     margin-top: -40px !important;
   }
-}
-@media (min-width: 768px) and (max-width: 1023px) {
+
   .hero-heading {
-    font-size: 1.8rem; /* smaller heading */
+    font-size: 2rem;
   }
 
   .hero-content p {
@@ -384,151 +384,41 @@ body {
   .btn1-getstarted {
     font-size: 0.95rem;
   }
-}
-@media (min-width: 768px) and (max-width: 1023px) {
+
   #loginBtn, #signupBtn {
-	margin-top: 8px;
+    margin-top: 8px;
     padding: 6px 14px;
     font-size: 0.85rem;
-
   }
+
   .nav-button-group {
     gap: 10px;
     flex-wrap: wrap;
     justify-content: flex-end;
   }
-  .logo{
-	font-size:larger !important;
-	padding-top:15px !important;
+
+  .logo {
+    font-size: x-large !important;
+    padding-top: 15px !important;
   }
-  .hero-section{
-	margin-top: 100px !important;
+
+  .hero-section {
+    margin-top: 100px !important;
   }
 }
- .course-header {
-      text-align: center;
-      margin-bottom: 2.5rem;
-    }
-    
-    .course-header h2 {
-      background: linear-gradient(90deg, #6e3bea 0%, #ad7bff 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      font-size: 2.5rem;
-      line-height: 1.2;
-      margin-bottom: 1rem;
-    }
-    
-    .mentor-card {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      background-color: #f9f7ff;
-      border-radius: 12px;
-      padding: 1rem;
-      transition: all 0.3s ease;
-    }
-    
-    .mentor-card:hover {
-      box-shadow: 0 10px 15px -3px rgba(123, 56, 224, 0.1);
-      transform: translateY(-2px);
-    }
-    
-    .mentor-photo {
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid #fff;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    }
-    
-    .enrollment-panel {
-      background: linear-gradient(145deg, #ffffff, #f9f7ff);
-      border-radius: 16px;
-      padding: 1.5rem;
-      box-shadow: 0 10px 25px -5px rgba(123, 56, 224, 0.15);
-    }
-    
-    .course-code {
-      display: inline-block;
-      background: #f0eafb;
-      border: 1px dashed #7b38e0;
-      border-radius: 4px;
-      padding: 0.5rem 1rem;
-      font-family: monospace;
-      font-weight: bold;
-      margin-top: 0.5rem;
-      user-select: all;
-      cursor: pointer;
-    }
-    
-    .qr-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 1.5rem 0;
-    }
-    
-    .detail-enroll-button {
-      width: 100%;
-      background: linear-gradient(135deg, #7b38e0 0%, #9d6fde 100%);
-      color: white;
-      font-weight: 600;
-      padding: 1rem;
-      border-radius: 12px;
-      text-align: center;
-      transform-style: preserve-3d;
-      position: relative;
-      transition: all 0.3s ease;
-      box-shadow: 0 10px 20px -5px rgba(123, 56, 224, 0.4);
-      overflow: hidden;
-    }
-    
-    .detail-enroll-button:hover {
-      transform: translateY(-5px) scale(1.02);
-      box-shadow: 0 15px 30px -10px rgba(123, 56, 224, 0.6);
-    }
-    
-    .detail-enroll-button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transform: translateX(-100%);
-    }
-    
-    .detail-enroll-button:hover::before {
-      animation: sheen 1.5s forwards;
-    }
-    
-    @keyframes sheen {
-      0% {
-        transform: translateX(-100%);
-      }
-      100% {
-        transform: translateX(200%);
-      }
-    }
-    
-    .course-description {
-      color: #4b5563;
-      line-height: 1.8;
-      margin-bottom: 2rem;
-    }
-    
-    @media (max-width: 768px) {
-      .course-content {
-        grid-template-columns: 1fr;
-      }
-      
-      .enrollment-panel {
-        margin-top: 2rem;
-      }
-    }
 
+/* Hide all except login, signup, dashboard on tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .nav-hide-on-tab {
+    display: none !important;
+  }
 
+  .nav-login,
+  .nav-signup,
+  .nav-dashboard {
+    display: inline-block !important;
+  }
+    #dashboardPanel {
+    display: block !important;
+  }
+}

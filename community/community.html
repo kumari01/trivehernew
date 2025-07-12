@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Community</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- Font Awesome -->
@@ -26,55 +26,59 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav class="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-lg z-50 py-4">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-            <a href="javascript:void(0)" class="flex items-center gap-2">
-                <div class="text-3xl font-bold flex items-center gap-1 logo-text logo">
-                <span class="gradient-text">&lt;/&gt;</span>
-                <span>Trive<span class="text-purple-600">Her</span></span>
-                </div>
-            </a>
-
-            <div class="hidden md:flex items-center gap-8">
-                <a href="../main/index.html" class="nav-link">Home</a>
-                <a href="../courses/courses.html" class="nav-link">Courses</a>
-                <!-- <a href="javascript:void(0)" class="nav-link">Mentors</a> -->
-                <a href="../community/community.html" class="nav-link">Community</a>
-                <a href="../resources/resources.html" class="nav-link relative">
-                Resources
-                <div class="notification-badge" id="notificationBadge">1</div>
-                </a>
-            </div>
-
-            <div class="flex items-center gap-4 nav-button-group">
-                <button class="hidden md:inline-block px-4 py-2 border-2 border-purple-500 text-purple-600 text-sm font-medium rounded-full hover:bg-purple-50 transition-all" id="loginBtn">
-                Log In
-                </button>
-                <button class="px-4 py-2 bg-purple-600 text-white text-sm font-medium rounded-full hover:bg-purple-500 transition-all" id="signupBtn">
-                Sign Up
-                </button>
-                <button id="menuToggle" class="md:hidden text-gray-700 focus:outline-none">
-                <i class="fas fa-bars text-2xl"></i>
-                </button>
-
-            </div>
+  <nav class="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-lg z-50 py-4">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+      <a href="javascript:void(0)" class="flex items-center gap-2">
+        <div class="text-3xl font-bold flex items-center gap-1 logo-text logo">
+          <span class="gradient-text">&lt;/&gt;</span>
+          <span>Trive<span class="text-purple-600">Her</span></span>
         </div>
-        <!-- Right-side Dashboard -->
-        <div id="dashboardPanel" class="fixed top-0 right-0 h-full w-72 bg-white opacity-100 shadow-lg transform translate-x-full transition-transform duration-300 z-50 md:hidden">
-            <div class="p-6 bg-white opacity-100">
-                <h3 class="text-xl font-bold mb-4 text-gray-800">Dashboard</h3>
+      </a>
 
-                <a href="../main/index.html" class="block py-2 text-gray-800 font-medium nav-link">Home</a>
-                <a href="../courses/courses.html" class="block py-2 text-gray-800 font-medium nav-link">Courses</a>
-                <a href="../community/community.html" class="block py-2 text-gray-800 font-medium nav-link">Community</a>
-                <a href="../resources/resources.html" class="block py-2 text-gray-800 font-medium nav-link relative">
-                Resources <div class="notification-badge">1</div>
-                </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="../main/index.html" class="nav-link nav-hide-on-tab">Home</a>
+        <a href="../courses/courses.html" class="nav-link nav-hide-on-tab">Courses</a>
+        <a href="../mentor/mentor.html" class="nav-link nav-hide-on-tab">Mentors</a>
+        <a href="../community/community.html" class="nav-link nav-hide-on-tab">Community</a>
+        <a href="../resources/resources.html" class="nav-link relative nav-hide-on-tab">
+          Resources
+          <div class="notification-badge" id="notificationBadge">1</div>
+        </a>
+      </div>
 
-                <button id="closeDashboard" class="mt-6 px-4 py-2 bg-purple-600 text-white rounded-full w-full">Close</button>
-            </div>
-        </div>
-    </nav>
+      <div class="flex items-center gap-4 nav-button-group">
+        <button class="hidden md:inline-block px-4 py-2 border-2 border-purple-500 text-purple-600 text-sm font-medium rounded-full hover:bg-purple-50 transition-all nav-login" id="loginBtn">
+          Log In
+        </button>
+        <button class="px-4 py-2 bg-purple-600 text-white text-sm font-medium rounded-full hover:bg-purple-500 transition-all nav-signup" id="signupBtn">
+          Sign Up
+        </button>
+        <!-- ✅ Shows only in tab view -->
+        <button id="openDashboard" class="inline-block lg:hidden text-gray-700 focus:outline-none nav-dashboard">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+    </div>
+   <!-- Right-side Dashboard -->
+    <div id="dashboardPanel" class="fixed top-0 right-0 h-full w-72 bg-white shadow-lg transform translate-x-full transition-transform duration-300 z-50">
+
+      <div class="p-6 bg-white opacity-100">
+        <h3 class="text-xl font-bold mb-4 text-gray-800">Dashboard</h3>
+        <a href="javascript:void(0)" id="openLoginFromDashboard" class="block py-2 text-gray-800 font-medium nav-link">
+          Login
+        </a>
+        <a href="../main/index.html" class="block py-2 text-gray-800 font-medium nav-link md:hidden lg:block">Home</a>
+        <a href="../courses/courses.html" class="block py-2 text-gray-800 font-medium nav-link">Courses</a>
+         <a href="../mentor/mentor.html" class="block py-2 text-gray-800 font-medium nav-link">Mentors</a>
+        <a href="../community/community.html" class="block py-2 text-gray-800 font-medium nav-link">Community</a>
+        <a href="../resources/resources.html" class="block py-2 text-gray-800 font-medium nav-link relative">
+          Resources <div class="notification-badge">1</div>
+        </a>
+
+        <button id="closeDashboard" class="mt-6 px-4 py-2 bg-purple-600 text-white rounded-full w-full">Close</button>
+      </div>
+    </div>
+  </nav>
     <section id="community" class="mt-20 py-5 bg-gray-50/50 relative">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-10 sm:mb-16">
@@ -130,7 +134,70 @@
             </div>
         </div>
     </section>
+    <footer class="bg-gray-50 py-16">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:flex lg:gap-10">
+                <div class="flex flex-col basis-1/3">
+                    <a href="javascript:void(0)" class="flex items-center gap-2 mb-6">
+                        <div class="text-3xl font-bold">
+                            <span class="gradient-text">&lt;/&gt;</span>
+                            <span>Trive<span class="text-purple-600">Her</span></span>
+                        </div>
+                    </a>
+                    <p class="text-gray-600 mb-6">Empowering girls to become the tech leaders of tomorrow through accessible and engaging coding education.</p>
+                    <div class="flex gap-4">
+                        <a href="javascript:void(0)" class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-gray-600 hover:bg-purple-100 hover:text-purple-600 transition-all">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="javascript:void(0)" class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-gray-600 hover:bg-purple-100 hover:text-purple-600 transition-all">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="javascript:void(0)" class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-gray-600 hover:bg-purple-100 hover:text-purple-600 transition-all">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="javascript:void(0)" class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-gray-600 hover:bg-purple-100 hover:text-purple-600 transition-all">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                    </div>
+                </div>
 
+                <div class="flex flex-col basis-1/3">
+                    <h3 class="font-bold text-lg mb-6">Quick Links</h3>
+                    <ul class="space-y-4">
+                        <li><a href="javascript:void(0)" class="text-gray-600 hover:text-purple-600">Home</a></li>
+                        <li><a href="javascript:void(0)" class="text-gray-600 hover:text-purple-600">About Us</a></li>
+                        <li><a href="javascript:void(0)" class="text-gray-600 hover:text-purple-600">Courses</a></li>
+                        <li><a href="javascript:void(0)" class="text-gray-600 hover:text-purple-600">Community</a></li>
+                        <li><a href="javascript:void(0)" class="text-gray-600 hover:text-purple-600">Events</a></li>
+                    </ul>
+                </div>
+
+
+                <div class="flex flex-col basis-1/3">
+                    <h3 class="font-bold text-lg mb-6">Subscribe</h3>
+                    <p class="text-gray-600 mb-4">Stay updated with our latest courses and events</p>
+                    <form class="mb-4 w-full">
+                        <div class="flex">
+                            <input type="email" placeholder="Your email" class="px-4 py-3 rounded-l-lg border-2 border-r-0 border-gray-200 focus:outline-none focus:border-purple-400 w-full max-w-xs" />
+                            <button type="submit" class="bg-purple-600 text-white px-4 py-3 rounded-r-lg hover:bg-purple-700">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </form>
+                    <p class="text-gray-500 text-sm">By subscribing, you agree to our Privacy Policy</p>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-200 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-600">© 2025 TriveHer - Girls Who Code. All rights reserved.</p>
+                <div class="flex gap-6 mt-4 md:mt-0">
+                    <a href="javascript:void(0)" class="text-gray-600 hover:text-purple-600">Privacy Policy</a>
+                    <a href="javascript:void(0)" class="text-gray-600 hover:text-purple-600">Terms of Service</a>
+                    <a href="javascript:void(0)" class="text-gray-600 hover:text-purple-600">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
 
 </body>

@@ -9,6 +9,26 @@ function showNotification() {
 	const badge = document.getElementById('notificationBadge');
 	badge.classList.add('show');
 }
+//dashboard
+const openDashboard = document.getElementById('openDashboard');
+  const closeDashboard = document.getElementById('closeDashboard');
+  const dashboardPanel = document.getElementById('dashboardPanel');
+
+openDashboard.addEventListener('click', () => {
+    dashboardPanel.classList.remove('translate-x-full');
+    dashboardPanel.classList.add('translate-x-0');
+});
+
+closeDashboard.addEventListener('click', () => {
+    dashboardPanel.classList.remove('translate-x-0');
+    dashboardPanel.classList.add('translate-x-full');
+});
+const openLoginFromDashboard = document.getElementById('openLoginFromDashboard');
+
+openLoginFromDashboard.addEventListener('click', () => {
+	loginModal.classList.add('show');
+	dashboardPanel.classList.add('translate-x-full'); // Optional: hide dashboard
+});
 
 // Modal handling
 const signupModal = document.getElementById('signupModal');
@@ -89,33 +109,33 @@ document.getElementById('communityForm').addEventListener('submit', function(e) 
 document.addEventListener('DOMContentLoaded', function() {
 	// Initialize Three.js scene
 	initThreeScene();
-	
+
 	// Show notification after a delay
 	setTimeout(showNotification, 3000);
-	
+
 	// Initialize GSAP animations
 	if (typeof gsap !== 'undefined') {
-	gsap.from('.hero-content h1', { 
-		opacity: 0, 
-		y: 50, 
-		duration: 1, 
-		ease: 'power3.out' 
+	gsap.from('.hero-content h1', {
+		opacity: 0,
+		y: 50,
+		duration: 1,
+		ease: 'power3.out'
 	});
-	
-	gsap.from('.hero-content p', { 
-		opacity: 0, 
-		y: 30, 
-		duration: 1, 
-		delay: 0.3, 
-		ease: 'power3.out' 
+
+	gsap.from('.hero-content p', {
+		opacity: 0,
+		y: 30,
+		duration: 1,
+		delay: 0.3,
+		ease: 'power3.out'
 	});
-	
-	gsap.from('.btn-primary', { 
-		opacity: 0, 
-		y: 20, 
-		duration: 1, 
-		delay: 0.6, 
-		ease: 'power3.out' 
+
+	gsap.from('.btn-primary', {
+		opacity: 0,
+		y: 20,
+		duration: 1,
+		delay: 0.6,
+		ease: 'power3.out'
 	});
 	}
 });
@@ -142,27 +162,15 @@ window.addEventListener('click', function(event) {
 //         }
 //     });
 // });
- 
-const menuToggle = document.getElementById("menuToggle");
-const dashboard = document.getElementById("dashboardPanel");
-const closeBtn = document.getElementById("closeDashboard");
-menuToggle.addEventListener("click", () => {
-    dashboard.classList.remove("translate-x-full");
-  });
-
-closeBtn.addEventListener("click", () => {
-    dashboard.classList.add("translate-x-full");
-});
-
 
 
  document.querySelectorAll('.enroll-button').forEach(button => {
       button.addEventListener('click', async function() {
         const courseId = this.getAttribute('data-course');
-        
+
         // Check if user is logged in (you would implement this)
         const isLoggedIn = checkIfUserIsLoggedIn(); // implement this function
-        
+
         if (isLoggedIn) {
           // User is logged in, directly enroll them
           enrollUserInCourse(courseId);
@@ -174,12 +182,12 @@ closeBtn.addEventListener("click", () => {
               headers: {
                 'Content-Type': 'application/json'
               },
-              body: JSON.stringify({ 
-                email: document.getElementById('loginEmail').value, 
-                password: document.getElementById('loginPassword').value 
+              body: JSON.stringify({
+                email: document.getElementById('loginEmail').value,
+                password: document.getElementById('loginPassword').value
               }),
             });
-            
+
             if (response.ok) {
               const responseData = await response.json();
               // Handle successful authentication
@@ -195,20 +203,20 @@ closeBtn.addEventListener("click", () => {
         }
       });
     });
-    
+
     // Check if user is logged in
     function checkIfUserIsLoggedIn() {
       // This is a stub - implement with actual session checking logic
       // For example, check for an auth token in localStorage
       return localStorage.getItem('userToken') !== null;
     }
-    
+
     // Enroll user in course
     function enrollUserInCourse(courseId) {
       // This would connect to your actual enrollment API
       console.log(`Enrolling user in course: ${courseId}`);
       alert(`You've successfully enrolled in the course!`);
-      
+
       // Here you would make an API call to your backend
       // fetch('/api/enroll', {
       //   method: 'POST',
@@ -219,7 +227,7 @@ closeBtn.addEventListener("click", () => {
       //   body: JSON.stringify({ courseId })
       // });
     }
-    
+
     // Course data objects
     const courseData = {
       'python-basics': {
@@ -263,43 +271,43 @@ closeBtn.addEventListener("click", () => {
         ]
       }
     };
-    
+
     // Replace all "Enroll Now" buttons with links to course detail pages
     document.querySelectorAll('.enroll-button').forEach(button => {
       const courseId = button.getAttribute('data-course');
       button.outerHTML = `<a href="#course-${courseId}" class="btn-primary text-base sm:text-lg px-6 py-3 inline-block text-center">View Details</a>`;
     });
-    
+
     // Handle URL hash changes to show course detail
     function handleHashChange() {
       const hash = window.location.hash;
-      
+
       // Hide all main sections initially
       document.querySelectorAll('section').forEach(section => {
         if (!section.id.startsWith('course-detail')) {
           section.style.display = '';
         }
       });
-      
+
       const courseDetailSection = document.getElementById('course-detail');
-      
+
       // Check if hash is for a course
       if (hash.startsWith('#course-')) {
         const courseId = hash.replace('#course-', '');
         const course = courseData[courseId];
-        
+
         if (course) {
           // Hide other sections
           document.querySelectorAll('section:not(#course-detail)').forEach(section => {
             section.classList.add('hidden');
           });
-          
+
           // Show course detail section
           courseDetailSection.classList.remove('hidden');
-          
+
           // Generate course detail HTML
           const detailContent = document.getElementById('course-detail-content');
-          
+
           let mentorsHtml = '';
           course.mentors.forEach(mentor => {
             mentorsHtml += `
@@ -312,7 +320,7 @@ closeBtn.addEventListener("click", () => {
               </div>
             `;
           });
-          
+
           detailContent.innerHTML = `
             <div class="course-header">
               <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold">${course.title}</h2>
@@ -322,18 +330,18 @@ closeBtn.addEventListener("click", () => {
                 ${course.certification ? '<span class="bg-green-100 text-green-600 px-4 py-1 rounded-full text-sm font-medium">Certificate</span>' : ''}
               </div>
             </div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 course-content">
               <div class="md:col-span-2">
                 <h3 class="text-2xl font-bold mb-4">Course Description</h3>
                 <p class="course-description">${course.description}</p>
-                
+
                 <h3 class="text-2xl font-bold mb-4">Your Mentors</h3>
                 <div class="space-y-4 mb-8">
                   ${mentorsHtml}
                 </div>
               </div>
-              
+
               <div class="enrollment-panel">
                 <h3 class="text-xl font-bold mb-4">Enrollment & Payment</h3>
                 <div class="qr-container">
@@ -343,7 +351,7 @@ closeBtn.addEventListener("click", () => {
                     ${courseId.toUpperCase()}
                   </div>
                 </div>
-                
+
                 <button class="detail-enroll-button flex items-center justify-center gap-2" data-course="${courseId}" onclick="enrollUserInCourse('${courseId}')">
                   <i class="fas fa-graduation-cap"></i>
                   <span>Enroll Now</span>
@@ -351,7 +359,7 @@ closeBtn.addEventListener("click", () => {
               </div>
             </div>
           `;
-          
+
           // Scroll to top of course detail
           window.scrollTo(0, courseDetailSection.offsetTop - 100);
         }
@@ -363,7 +371,7 @@ closeBtn.addEventListener("click", () => {
         });
       }
     }
-    
+
     // Function to copy text to clipboard
     function copyText(text) {
       navigator.clipboard.writeText(text).then(function() {
@@ -372,20 +380,20 @@ closeBtn.addEventListener("click", () => {
         console.error('Could not copy text: ', err);
       });
     }
-    
+
     // Listen for hash changes
     window.addEventListener('hashchange', handleHashChange);
-    
+
     // Check hash on initial load
     document.addEventListener('DOMContentLoaded', function() {
       // ... existing code ...
-      
+
       // Handle initial hash if present
       handleHashChange();
-      
+
       // ... rest of code ...
     });
-    
+
     // Add event listener for back button
     document.getElementById('back-to-courses').addEventListener('click', function(e) {
       e.preventDefault();
