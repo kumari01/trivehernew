@@ -29,6 +29,13 @@ openLoginFromDashboard.addEventListener('click', () => {
 	loginModal.classList.add('show');
 	dashboardPanel.classList.add('translate-x-full'); // Optional: hide dashboard
 });
+//get start
+
+const getStartedBtn = document.getElementById('getStartedBtn');
+
+getStartedBtn?.addEventListener('click', () => {
+	loginModal.classList.add('show');
+});
 
 // Modal handling
 const signupModal = document.getElementById('signupModal');

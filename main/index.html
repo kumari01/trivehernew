@@ -26,17 +26,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
- <style>
-    @keyframes marquee {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    .animate-marquee {
-      animation: marquee 40s linear infinite;
-    }
-  </style>
-
-
   <link rel="stylesheet" href="style.css">
 
 </head>
@@ -70,7 +59,7 @@
           Sign Up
         </button>
         <!-- ✅ Shows only in tab view -->
-        <button id="openDashboard" class="inline-block lg:hidden text-gray-700 focus:outline-none nav-dashboard">
+        <button id="openDashboard" class="inline-block lg:hidden text-gray-700 focus:outline-non nav-dashboard py-7">
           <i class="fas fa-bars text-2xl"></i>
         </button>
       </div>
@@ -80,10 +69,10 @@
 
       <div class="p-6 bg-white opacity-100">
         <h3 class="text-xl font-bold mb-4 text-gray-800">Dashboard</h3>
-        <a href="javascript:void(0)" id="openLoginFromDashboard" class="block py-2 text-gray-800 font-medium nav-link">
+        <a href="javascript:void(0)" id="openLoginFromDashboard" class="block py-2 text-gray-800 font-medium nav-link md:hidden lg:block">
           Login
         </a>
-        <a href="../main/index.html" class="block py-2 text-gray-800 font-medium nav-link md:hidden lg:block">Home</a>
+        <a href="../main/index.html" class="block py-2 text-gray-800 font-medium nav-link ">Home</a>
         <a href="../courses/courses.html" class="block py-2 text-gray-800 font-medium nav-link">Courses</a>
         <a href="../mentor/mentor.html" class="block py-2 text-gray-800 font-medium nav-link">Mentors</a>
         <a href="../community/community.html" class="block py-2 text-gray-800 font-medium nav-link">Community</a>
@@ -104,7 +93,7 @@
         <p class="text-xl md:text-2xl pink-text font-light mb-10">
           Unlock your potential. Build unshakable confidence. Code the future you deserve.
         </p>
-        <button class="btn-primary btn1-getstarted text-lg flex items-center gap-2">
+        <button class="btn-primary btn1-getstarted text-lg flex items-center gap-2" id="getStartedBtn">
           <span>Get Started</span>
           <i class="fas fa-arrow-right"></i>
         </button>

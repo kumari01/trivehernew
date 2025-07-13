@@ -8,6 +8,11 @@ const courseData = {
         qrCode: '/assets/qr-python.png',
         mentors: [
           {
+            name: 'Kumari',
+            photo: 'https://cdn.pixabay.com/photo/2018/01/15/07/51/woman-3083377_960_720.jpg',
+            bio: 'Senior Python Developer with 8+ years experience teaching coding to beginners.'
+          },
+          {
             name: 'Jane Doe',
             photo: 'https://cdn.pixabay.com/photo/2018/01/15/07/51/woman-3083377_960_720.jpg',
             bio: 'Senior Python Developer with 8+ years experience teaching coding to beginners.'
